@@ -13,12 +13,12 @@ class LineFun{
 		$this->result=$n1;
 	}
 	public function line($a, $b){
-		if($a != 0) {
-			$this->result=-$b/$a;
+		if($a == 0) {
+			throw new DaraganException("Error: the equation has no solutions \n");
 		}
 
-		
-		
+		DaraganLog::log("It is linear equation");
+		$this->result=-$b/$a;
 		return $this->result;
 	}
 }
