@@ -11,10 +11,13 @@ class DoubleFun extends LineFun implements EquationInterface{
 		if ($a==0){
 			return $this->line($b, $c);
 		}
-		
+		DaraganLog::log("It is quadratic equation");
 		
 		$d=$this->dis($a, $b, $c);
 		
+		if($d < 0) {
+			throw new DaraganException("It is determined that such an equation does not exist. \n");
+		}
 		if($d==0){
 			$this->result[]=-$b/(2*$a);
 		}elseif($d>0){
