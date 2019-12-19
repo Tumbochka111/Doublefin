@@ -6,7 +6,7 @@ class DoubleFun extends LineFun implements EquationInterface{
 	{
 		return ($b*$b)-4*$a*$c;
 	}
-	public function doubl($a, $b, $c)
+	public function solve($a, $b, $c)
 	{
 		if ($a==0){
 			return $this->line($b, $c);

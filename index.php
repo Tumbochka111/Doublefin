@@ -24,7 +24,7 @@ for($i = 0; $i < 3; $i++) {
 }
 try {
 	$obj= new DoubleFun();
-	$abj=$obj->doubl($kfArray[0], $kfArray[1], $kfArray[2]);
+	$abj=$obj->solve($kfArray[0], $kfArray[1], $kfArray[2]);
 	if($kfArray[0]==0){
 		DaraganLog::log("The equation is introduced:".$kfArray[1] . "x + " . $kfArray[2] . " = 0");
 		DaraganLog::log("The roots of the equation: " . $abj."\n");
