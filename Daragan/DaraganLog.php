@@ -14,6 +14,8 @@ class DaraganLog extends LogAbstract implements LogInterface{
   }
 
   public function _write() {
+	  $d = new \DateTime();
+	  file_put_contents(baseuri. ''. $d->('d.m.Y_H-i-s'). '.log', implode("\r", DaraganLog::Instance()->log));
 	echo implode("\n", DaraganLog::Instance()->log);
   }
 

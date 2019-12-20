@@ -1,4 +1,6 @@
 <?php 
+define("baseuri", __DIR__)
+date_default_timezone_set("Europe/Moscow");
 
 include 'core\LogAbstract.php';
 include 'core\LogInterface.php';
