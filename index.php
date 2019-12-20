@@ -1,19 +1,23 @@
 <?php 
-define("baseuri", __DIR__)
+define("BASEURI", __DIR__);
 date_default_timezone_set("Europe/Moscow");
 
-include 'core\LogAbstract.php';
-include 'core\LogInterface.php';
-include 'Daragan\DaraganLog.php';
-include 'core\EquationInterface.php';
-include 'Daragan\LineFun.php';
-include 'Daragan\DoubleFun.php';
-include 'Daragan\DaraganException.php';
+include BASEURI .'\core\LogAbstract.php';
+include BASEURI .'\core\LogInterface.php';
+include BASEURI .'\Daragan\DaraganLog.php';
+include BASEURI .'\core\EquationInterface.php';
+include BASEURI .'\Daragan\LineFun.php';
+include BASEURI .'\Daragan\DoubleFun.php';
+include BASEURI .'\Daragan\DaraganException.php';
 
 use Daragan\DaraganLog;
 use Daragan\LineFun;
 use Daragan\DoubleFun;
 use Daragan\DaraganException;
+  
+  
+$version = trim(shell_exec('git symbolic-ref --short -q HEAD'));
+DaraganLog::log('Program version ' . $version);
 
 ini_set("display_errors", 1); 
 error_reporting (-1); 
