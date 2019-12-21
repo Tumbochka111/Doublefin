@@ -16,36 +16,25 @@ use Daragan\DoubleFun;
 use Daragan\DaraganException;
   
   
-$version = trim(shell_exec('git symbolic-ref --short -q HEAD'));
+$version = file_get_contents(BASEURI . '/version');
 DaraganLog::log('Program version ' . $version);
 
 echo "Enter 3 parameters a, b and c \n";
 
-for($i = 0; $i < 3; $i ++) {
+for($i = 0; $i < 3; $i++) {
 	fscanf(STDIN, "%d\n", $number);
-	$kfArray[$i] =  $number;
+	$kfArray[] =  $number;
 }
-
-$a = $kfArray[0];
-$b = $kfArray[1];
-$c = $kfArray[2];
-
-$eq = $a . "x^2 + " . $b . "x + " . $c . " = 0";
-DaraganLog::log("Entered equation: " . $eq);
-
 try {
-	$equation = new DoubleFun();
-	$roots = $equation->solve($a, $b, $c);
-	
-	if($kfArray[0] == 0) {
-		DaraganLog::log("This equation has 2 roots: " . $roots[0] . ", " . $roots[1] . "\n");
-	} else{
-		DaraganLog::log("Equation root " . $roots . "\n");
-	}
-	
-} catch(MyException $ex) {
-	DaraganLog::log($ex->getMessage() . "\n");
+	$obj= new DoubleFun();
+	$abj=$obj->solve($kfArray[0], $kfArray[1], $kfArray[2]);
+	DaraganLog::log("The equation is introduced:" . $kfArray[0] . "x^2 + " . $kfArray[1] . "x + " . $kfArray[2] . " = 0");
+	DaraganLog::log("The roots of the equation: " . implode(",", $abj)."\n");
+	}	
+catch(DaraganException $ex) {
+	DaraganLog::log($ex->getMessage());
 }
+
 DaraganLog::write();
 
 ?>
