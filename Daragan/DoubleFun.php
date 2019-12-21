@@ -1,29 +1,36 @@
 <?php namespace  Daragan;
 use core\EquationInterface;
-class DoubleFun extends LineFun implements EquationInterface{
-	protected function dis($a, $b, $c)
-	{
-		return ($b*$b)-4*$a*$c;
+Class DoubleFun extends Linear implements EquationInterface {
+
+  protected function findDiscriminant($a, $b, $c) {
+	   return pow($b, 2) - 4 * $a * $c;
+  }
+
+  public function solve($a, $b, $c) {
+  	if($a == 0) { 
+		$this->x = array($this->Linear($b, $c));
+		return $this->x[0];
+    }
+
+    DaraganLog::log("Entered equation is square");
+
+  	$disc = $this->findDiscriminant($a, $b, $c);
+	if($disc < 0) {
+		throw new MyException("This equation has no roots");
 	}
-	public function solve($a, $b, $c)
-	{
-		if ($a==0){
-			return $this->line($b, $c);
-		}
-		DaraganLog::log("It is quadratic equation");
-		
-		$d=$this->dis($a, $b, $c);
-		
-		if($d < 0) {
-			throw new DaraganException("It is determined that such an equation does not exist. \n");
-		}
-		if($d==0){
-			$this->result=-$b/(2*$a);
-		}elseif($d>0){
-			$this->result=array((-$b+sqrt($d))/(2*$a), (-$b-sqrt($d))/(2*$a));
-		}
-		return $this->result;
-	}
+	
+  	if($disc > 0) {
+  	  array_push($this->x, round((-1 * $b + sqrt($disc))/(2 * $a), 3), round((-1 * $b - sqrt($disc))/(2 * $a), 3)); 
+  	}
+
+  	if($disc == 0) {
+  	  $this->x = (-1 * $b)/(2 * $a);
+  	}
+
+  	return $this->x;
+  }
+
 }
+
 
 ?>

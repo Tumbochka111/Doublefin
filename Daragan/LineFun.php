@@ -1,26 +1,22 @@
 <?php namespace  Daragan;
 use core;
-class LineFun{
-	function __construct($result=0){
-		$this->result=$result;
-	}
-	protected $result;
-	public function getResult(){
-	 
-		return $this->result;
-	}
-	public function setResult($n1){
-		$this->result=$n1;
-	}
-	public function line($a, $b){
-		if($a == 0) {
-			throw new DaraganException("Error: the equation has no solutions \n");
-		}
+Class Linear {
+  // решение уравнения(ответ)
+  protected $x = [];
 
-		DaraganLog::log("It is linear equation");
-		$this->result=-$b/$a;
-		return $this->result;
+  public function __construct() {
+  }
+
+  public function Linear($k, $b) {
+	if($k == 0) {
+		throw new MyException("This is not an equation \n");
 	}
+	
+    DaraganLog::log("Linear equation is entered");
+  	$this->x[] = round(($b * -1)/$k, 3);
+
+	return $this->x;
+  }
 }
 
 ?>

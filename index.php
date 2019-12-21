@@ -19,28 +19,32 @@ use Daragan\DaraganException;
 $version = trim(shell_exec('git symbolic-ref --short -q HEAD'));
 DaraganLog::log('Program version ' . $version);
 
-ini_set("display_errors", 1); 
-error_reporting (-1); 
-
 echo "Enter 3 parameters a, b and c \n";
 
-for($i = 0; $i < 3; $i++) {
+for($i = 0; $i < 3; $i ++) {
 	fscanf(STDIN, "%d\n", $number);
-	$kfArray[] =  $number;
+	$kfArray[$i] =  $number;
 }
+
+$a = $kfArray[0];
+$b = $kfArray[1];
+$c = $kfArray[2];
+
+$eq = $a . "x^2 + " . $b . "x + " . $c . " = 0";
+DaraganLog::log("Entered equation: " . $eq);
+
 try {
-	$obj= new DoubleFun();
-	$abj=$obj->solve($kfArray[0], $kfArray[1], $kfArray[2]);
-	if($kfArray[0]==0){
-		DaraganLog::log("The equation is introduced:".$kfArray[1] . "x + " . $kfArray[2] . " = 0");
-		DaraganLog::log("The roots of the equation: " . $abj."\n");
+	$equation = new DoubleFun();
+	$roots = $equation->solve($a, $b, $c);
+	
+	if($kfArray[0] == 0) {
+		DaraganLog::log("This equation has 2 roots: " . $roots[0] . ", " . $roots[1] . "\n");
+	} else{
+		DaraganLog::log("Equation root " . $roots . "\n");
 	}
-	else{
-		DaraganLog::log("The equation is introduced:".$kfArray[0] . "x^2 + " .$kfArray[1] . "x + " . $kfArray[2] . " = 0");
-		DaraganLog::log("The roots of the equation: " . $abj[0] . ", " . $abj[1] . "\n");
-	}	
-} catch(DaraganException $ex) {
-	DaraganLog::log($ex->getMessage());
+	
+} catch(MyException $ex) {
+	DaraganLog::log($ex->getMessage() . "\n");
 }
 DaraganLog::write();
 
