@@ -1,7 +1,6 @@
 <?php namespace  Daragan;
 use core\EquationInterface;
 class DoubleFun extends LineFun implements EquationInterface{
-	protected $result = array();
 	protected function dis($a, $b, $c)
 	{
 		return ($b*$b)-4*$a*$c;
