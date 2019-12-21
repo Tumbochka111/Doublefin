@@ -19,7 +19,8 @@ class DoubleFun extends LineFun implements EquationInterface{
 			throw new DaraganException("It is determined that such an equation does not exist. \n");
 		}
 		if($d==0){
-			$this->result[]=-$b/(2*$a);
+			$cele =-$b/(2*$a);
+			$this->result[0]=$cele;
 		}elseif($d>0){
 			$this->result=array((-$b+sqrt($d))/(2*$a), (-$b-sqrt($d))/(2*$a));
 		}
