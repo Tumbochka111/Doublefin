@@ -9,9 +9,7 @@ if(is_dir(BASEURI. '\core')) {
 }
 
 shell_exec('git clone https://github.com/rok9ru/trpo-core.git ' . BASEURI . '/core');
-if(!is_dir(BASEURI . '/log')) {
-	mkdir(BASEURI . '/log');
-}
+
 
 echo $version;
 ?>
