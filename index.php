@@ -26,9 +26,9 @@ for($i = 0; $i < 3; $i++) {
 	$kfArray[] =  $number;
 }
 try {
+	DaraganLog::log("The equation is introduced:" . $kfArray[0] . "x^2 + " . $kfArray[1] . "x + " . $kfArray[2] . " = 0");
 	$obj= new DoubleFun();
 	$abj=$obj->solve($kfArray[0], $kfArray[1], $kfArray[2]);
-	DaraganLog::log("The equation is introduced:" . $kfArray[0] . "x^2 + " . $kfArray[1] . "x + " . $kfArray[2] . " = 0");
 	DaraganLog::log("The roots of the equation: " . implode(",", $abj)."\n");
 	}	
 catch(DaraganException $ex) {
